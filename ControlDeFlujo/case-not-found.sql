@@ -3,6 +3,7 @@ BEGIN
 	DECLARE vSabor varchar(20);
     DECLARE mensajeError VARCHAR(50);
 
+    -- aquí está el caso que no se encuentra
     DECLARE CONTINUE HANDLER FOR 1339
     SET mensajeError = 'Sabor no Definido en ningun caso';
     
