@@ -1,0 +1,10 @@
+DELIMITER $$
+
+DROP TRIGGER IF EXISTS tg_facturacion_update;
+
+CREATE TRIGGER IF NOT EXISTS tg_facturacion_update
+AFTER UPDATE ON items
+FOR EACH ROW BEGIN
+  CALL sp_triggers;
+END $$
+DELIMITER ;
