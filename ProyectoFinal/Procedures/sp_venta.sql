@@ -12,6 +12,7 @@ BEGIN
     DECLARE vItems INT;
     DECLARE vNFactura INT;
     DECLARE vContador INT DEFAULT 1;
+    DECLARE vNumItems INT;
 
     SELECT MAX(numero) + 1 INTO vNFactura FROM facturas;
 
@@ -39,22 +40,31 @@ BEGIN
 
         SET vProducto = f_producto_aleatorio();
 
-        SET vCantidad = f_aleatorio(1, maxCantidad);
+        SELECT COUNT(*) INTO vNumItems 
+        FROM 
+            items
+        WHERE codigo = vProducto AND numero = vNFactura;
 
-        SELECT precio INTO vPrecio FROM productos WHERE codigo = vProducto;
+        IF vNumItems = 0 THEN
 
-        INSERT INTO items (
-            numero, 
-            codigo, 
-            cantidad, 
-            precio
-        ) 
-        VALUES (
-            vNFactura, 
-            vProducto, 
-            vCantidad, 
-            vPrecio
-        );
+            SET vCantidad = f_aleatorio(1, maxCantidad);
+
+            SELECT precio INTO vPrecio FROM productos WHERE codigo = vProducto;
+
+            INSERT INTO items (
+                numero, 
+                codigo, 
+                cantidad, 
+                precio
+            ) 
+            VALUES (
+                vNFactura, 
+                vProducto, 
+                vCantidad, 
+                vPrecio
+            );
+            
+        END IF;
 
         SET vContador = vContador +1;
 
