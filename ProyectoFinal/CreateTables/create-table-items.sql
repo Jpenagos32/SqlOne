@@ -1,5 +1,5 @@
 CREATE TABLE empresa.items (
-    numero VARCHAR(5) NOT NULL,
+    numero INT NOT NULL,
     codigo VARCHAR(10) NOT NULL,
     cantidad INT,
     precio FLOAT,

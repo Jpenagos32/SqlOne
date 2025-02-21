@@ -1,5 +1,5 @@
 CREATE TABLE empresa.facturas(
-    numero VARCHAR(5) NOT NULL,
+    numero INT NOT NULL,
     fecha DATE,
     dni VARCHAR(11) NOT NULL,
     matricula VARCHAR(5) NOT NULL,
