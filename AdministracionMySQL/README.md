@@ -52,3 +52,38 @@
 - La clave externa no soporta full text
 - Almacena datos de manera más compacta
 - Implementa indices HAS y BTREE
+
+### InnoDB
+- Mecanismo de almacenamiento por defecto en mysql
+- Soporte transaccional completo
+- Bloqueo de tabla a nivel de linea
+- Indexación BTREE
+- Backup se puede realizar online (con la db corriendo)
+
+
+### MEMORY
+- Mecanismo de almacenamiento que crea tablas en la memoria ram.
+- No soporta clave externa
+- Acceso muy rapido a la información
+- Los datos necesitan ser reinicializados junto con el servidor
+- Bloqueo a nivel de tabla
+- Utiliza indices HASH por defecto y BTREE
+- Formato de linea de longitud fija (no soporta BLOB ni TEXT)
+
+## Back-up
+
+- Es una copia de seguridad que se realiza periodicamente para poder recuperar la base de datos en caso de algun problema
+
+### Back-up logico
+- Exporta todas las estructuras, tablas, rutinas (...) a un script sql que al ser ejecutado recrea la base de datos
+- Permite la manipulación externa, antes de recuperar la informacion
+- Es más lento porque se ejecuta comando a comando 
+
+### Back-up fisico
+- Contiene todos los archivos binarios del sitema donde se encuentra la información almacenada, pero sin los respectivos comandos
+- Es más rapido que el back up logico pero es menos flexible.
+
+### mysql dump para crear backups logicos
+sintaxis: `mysqldump [options]`
+- documentación: https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html
+
